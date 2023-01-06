@@ -32,7 +32,6 @@ declare global {
   var __webpack_public_path__: string;
 
   var vidjs: typeof import("video.js").default;
-  var Plyr: typeof import("plyr");
   var videoClientId: string;
   var videoClientIdPersistent: string;
 }
