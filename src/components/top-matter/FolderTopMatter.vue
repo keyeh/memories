@@ -15,7 +15,7 @@
     </NcBreadcrumbs>
 
     <div class="right-actions">
-      <NcActions :inline="2">
+      <NcActions :inline="1">
         <NcActionRouter
           :to="{ query: recursive ? {} : {recursive: '1'}}"
           close-after-click
@@ -26,14 +26,6 @@
             <TimelineIcon v-else :size="20"/>
           </template>
         </NcActionRouter>
-        <NcActionButton
-          :aria-label="t('memories', 'Share folder')"
-          @click="$refs.shareModal.open(false)"
-          close-after-click
-        >
-          {{ t("memories", "Share folder") }}
-          <template #icon> <ShareIcon :size="20" /> </template>
-        </NcActionButton>
       </NcActions>
     </div>
 
