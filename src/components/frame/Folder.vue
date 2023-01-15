@@ -159,13 +159,13 @@ export default defineComponent({
     }
   }
 
-  // Show it on hover if not a preview
-  .folder:hover > & > .folder-icon {
-    opacity: 0.8;
-  }
-  .folder.hasPreview:hover > & {
-    opacity: 0;
-  }
+  // // Show it on hover if not a preview
+  // .folder:hover > & > .folder-icon {
+  //   opacity: 0.8;
+  // }
+  // .folder.hasPreview:hover > & {
+  //   opacity: 0;
+  // }
 
   // Make it red if has an error
   .folder.hasError > & {
@@ -220,9 +220,9 @@ export default defineComponent({
       &.error {
         display: none;
       }
-      .folder:hover & {
-        filter: brightness(100%);
-      }
+      // .folder:hover & {
+      //   filter: brightness(100%);
+      // }
     }
   }
 }
