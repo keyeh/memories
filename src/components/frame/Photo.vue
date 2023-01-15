@@ -61,6 +61,9 @@
         muted
         playsinline
       />
+      <div class="video-name fill-block" v-if="data.flag & c.FLAG_IS_VIDEO">
+        <div class="name">{{ data.basename.replace(/[_-]/g, " ").replace(/\.[^/.]+$/, "") }}</div>
+      </div>
       <div class="overlay fill-block" />
     </div>
   </div>
@@ -270,6 +273,17 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+
+.video-name { 
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  color: white;
+  text-align: center;
+}
 /* Container and selection */
 .p-outer {
   padding: 2px;
