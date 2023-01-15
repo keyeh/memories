@@ -77,8 +77,12 @@ class DaysController extends ApiBase
             if (!$this->isRecursive()) {
                 array_unshift($list, $this->getSubfoldersEntry($root->getFolder($root->getOneId())));
             }
+            $resp = new JSONResponse($list, Http::STATUS_OK);
+            $resp->addHeader('Cache-Control', 'max-age=604800, private');
+            $resp->addHeader('Expires', '');
+            $resp->addHeader('Pragma', '');
 
-            return new JSONResponse($list, Http::STATUS_OK);
+            return $resp;
         } catch (\Exception $e) {
             return new JSONResponse(['message' => $e->getMessage()], Http::STATUS_INTERNAL_SERVER_ERROR);
         }
