@@ -82,7 +82,7 @@ class DaysController extends ApiBase
                 array_unshift($list, $this->getSubfoldersEntry($root->getFolder($root->getOneId())));
             }
             $resp = new JSONResponse($list, Http::STATUS_OK);
-            $resp->addHeader('Cache-Control', 'max-age=604800, private');
+            $resp->addHeader('Cache-Control', 'max-age=3600, private');
             $resp->addHeader('Expires', '');
             $resp->addHeader('Pragma', '');
 
