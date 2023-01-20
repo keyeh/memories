@@ -63,7 +63,7 @@ class VideoSetup extends Command
         }
 
         // Get ffmpeg version
-        $ffmpeg = shell_exec("{$ffmpegPath} -version");
+        $ffmpeg = shell_exec("{$ffmpegPath} -version") ?: '';
         if (false === strpos($ffmpeg, 'ffmpeg version')) {
             $ffmpeg = null;
             $output->writeln('<error>ffmpeg is not installed</error>');
@@ -72,7 +72,7 @@ class VideoSetup extends Command
         }
 
         // Get ffprobe version
-        $ffprobe = shell_exec("{$ffprobePath} -version");
+        $ffprobe = shell_exec("{$ffprobePath} -version") ?: '';
         if (false === strpos($ffprobe, 'ffprobe version')) {
             $ffprobe = null;
             $output->writeln('<error>ffprobe is not installed</error>');
@@ -139,21 +139,21 @@ class VideoSetup extends Command
         $output->writeln('You should restart the server for changes to take effect');
 
         // Check for VAAPI
-        $output->writeln("\nChecking for QSV (/dev/dri/renderD128)");
+        $output->writeln("\nChecking for VAAPI (/dev/dri/renderD128)");
         if (file_exists('/dev/dri/renderD128')) {
-            $output->writeln('QSV is available. Do you want to enable it? [Y/n]');
+            $output->writeln('VAAPI is available. Do you want to enable it? [Y/n]');
 
             if ('n' === trim(fgets(fopen('php://stdin', 'r')))) {
                 $this->config->setSystemValue('memories.qsv', false);
-                $output->writeln('QSV is now disabled');
+                $output->writeln('VAAPI is now disabled');
             } else {
-                $output->writeln("\nQSV is now enabled. You may still need to install the Intel Media Driver");
+                $output->writeln("\nVAAPI is now enabled. You may still need to install the Intel Media Driver");
                 $output->writeln('and ensure proper permissions for /dev/dri/renderD128.');
                 $output->writeln('See the documentation for more details.');
                 $this->config->setSystemValue('memories.qsv', true);
             }
         } else {
-            $output->writeln('QSV is not available');
+            $output->writeln('VAAPI is not available');
             $this->config->setSystemValue('memories.qsv', false);
         }
 
